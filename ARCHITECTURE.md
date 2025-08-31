@@ -158,25 +158,25 @@ sequenceDiagram
 ```mermaid
 graph TB
     subgraph "User Input"
-        UI[Code Snippet from User]
+        UI["Code Snippet from User"]
     end
     
     subgraph "Security Validation Pipeline"
-        AST[AST Parser - Python ast.parse]
-        VAL[Code Validator - visit_Call, visit_Import]
-        WL[Whitelist Check - Allowed Modules & Functions]
-        NS[Safe Namespace - Controlled Builtins]
-        TO[Timeout Protection - SIGALRM Handler]
+        AST["AST Parser - Python ast.parse"]
+        VAL["Code Validator - visit_Call, visit_Import"]
+        WL["Whitelist Check - Allowed Modules & Functions"]
+        NS["Safe Namespace - Controlled builtins"]
+        TO["Timeout Protection - Signal alarm handler"]
     end
     
     subgraph "Execution Environment"
-        EXEC[exec() in Sandbox]
-        RESULT[Extract 'result' Variable]
+        EXEC["Sandbox Exec (exec)"]
+        RESULT["Capture result variable"]
     end
     
     subgraph "Output Processing"
-        SER[JSON Serialization]
-        ERR[Error Handling]
+        SER["JSON Serialization"]
+        ERR["Error Handling"]
     end
     
     UI --> AST
@@ -195,6 +195,7 @@ graph TB
     style WL fill:#fff3e0
     style TO fill:#f3e5f5
     style ERR fill:#fce4ec
+
 ```
 
 ## Multi-Cloud Abstraction Pattern
