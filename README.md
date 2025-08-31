@@ -244,6 +244,17 @@ This project demonstrates:
 - **Product Thinking**: Creating reusable solutions that solve real business problems
 - **Open Source Development**: Publishing reusable libraries for community benefit
 
+## 📊 Architecture Diagrams
+
+For detailed system architecture, component relationships, and data flow diagrams, see [ARCHITECTURE.md](./ARCHITECTURE.md) which includes:
+
+- **C4 Context & Container Diagrams**: High-level system overview
+- **Component Architecture**: Internal structure of SyntropAIBox
+- **Security Architecture**: AST validation and sandboxing flow  
+- **Multi-Cloud Abstraction Pattern**: Provider-agnostic design
+- **MCP Protocol Flow**: Sequence diagrams for client-server interactions
+- **Deployment Architecture**: Container and distribution strategy
+
 ## 📚 Repository Links
 
 - **Core Library**: [syntropaibox](https://test.pypi.org/project/syntropaibox/)
