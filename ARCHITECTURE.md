@@ -90,20 +90,20 @@ graph TB
 graph TB
     subgraph "SyntropAIBox Core Components"
         subgraph "Base Classes"
-            BQ[BaseQuerier<br/>- execute_query()<br/>- build_code_snippet_schema()<br/>- run_code_tool()]
-            BS[BaseSession<br/>- from_args()<br/>- configure_parser()]
+            BQ["BaseQuerier\n- execute_query()\n- build_code_snippet_schema()\n- run_code_tool()"]
+            BS["BaseSession\n- from_args()\n- configure_parser()"]
         end
         
         subgraph "Security Layer"
-            CE[CodeExecutor<br/>AST Transformer<br/>- visit_Import()<br/>- visit_Call()]
-            SB[create_safe_builtins()<br/>Whitelist Functions]
-            TO[exec_with_timeout()<br/>Timeout Protection]
+            CE["CodeExecutor\nAST Transformer\n- visit_Import()\n- visit_Call()"]
+            SB["create_safe_builtins()\nWhitelist Functions"]
+            TO["exec_with_timeout()\nTimeout Protection"]
         end
         
         subgraph "Execution Environment"
-            NS[Namespace Injection<br/>SDK Objects & Credentials]
-            AM[Allowed Modules<br/>Security Whitelist]
-            ER[Error Handling<br/>JSON Serialization]
+            NS["Namespace Injection\nSDK Objects & Credentials"]
+            AM["Allowed Modules\nSecurity Whitelist"]
+            ER["Error Handling\nJSON Serialization"]
         end
     end
     
@@ -118,6 +118,7 @@ graph TB
     style BS fill:#e8f5e8
     style CE fill:#ffebee
     style SB fill:#fff3e0
+
 ```
 
 ## MCP Protocol Flow
