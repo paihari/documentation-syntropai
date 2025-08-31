@@ -40,17 +40,17 @@ graph TB
     end
     
     subgraph "MCP Server Layer"
-        AWSServer[AWS MCP Server<br/>Docker Container]
-        AzureServer[Azure MCP Server<br/>Docker Container]
-        OCIServer[OCI MCP Server<br/>Docker Container]
-        FinvizServer[Finviz MCP Server<br/>Docker Container]
+        AWSServer[AWS MCP Server - Docker Container]
+        AzureServer[Azure MCP Server - Docker Container]
+        OCIServer[OCI MCP Server - Docker Container]
+        FinvizServer[Finviz MCP Server - Docker Container]
     end
     
     subgraph "Core Abstraction Layer"
-        BaseQuerier[BaseQuerier<br/>Secure Code Execution]
-        BaseSession[BaseSession<br/>Provider Authentication]
-        Sandbox[AST Sandbox<br/>Security Validation]
-        SyntropAIBox[(SyntropAIBox Library<br/>Published on TestPyPI)]
+        BaseQuerier[BaseQuerier - Secure Code Execution]
+        BaseSession[BaseSession - Provider Authentication]
+        Sandbox[AST Sandbox - Security Validation]
+        SyntropAIBox[(SyntropAIBox Library - Published on TestPyPI)]
     end
     
     subgraph "Cloud SDKs"
@@ -162,11 +162,11 @@ graph TB
     end
     
     subgraph "Security Validation Pipeline"
-        AST[AST Parser<br/>Python ast.parse()]
-        VAL[Code Validator<br/>visit_Call(), visit_Import()]
-        WL[Whitelist Check<br/>Allowed Modules & Functions]
-        NS[Safe Namespace<br/>Controlled Builtins]
-        TO[Timeout Protection<br/>SIGALRM Handler]
+        AST[AST Parser - Python ast.parse]
+        VAL[Code Validator - visit_Call, visit_Import]
+        WL[Whitelist Check - Allowed Modules & Functions]
+        NS[Safe Namespace - Controlled Builtins]
+        TO[Timeout Protection - SIGALRM Handler]
     end
     
     subgraph "Execution Environment"
@@ -202,29 +202,29 @@ graph TB
 ```mermaid
 graph TB
     subgraph "Unified Interface Layer"
-        UI[User Interface<br/>Single API Pattern]
+        UI[User Interface - Single API Pattern]
     end
     
     subgraph "Provider Abstraction"
-        AWS_S[AWSSession<br/>boto3.Session]
-        Azure_S[AzureSession<br/>DefaultAzureCredential]
-        OCI_S[OCISession<br/>oci.config]
+        AWS_S[AWSSession - boto3.Session]
+        Azure_S[AzureSession - DefaultAzureCredential]
+        OCI_S[OCISession - oci.config]
         
-        AWS_Q[AWSResourceQuerier<br/>BaseQuerier Implementation]
-        Azure_Q[AzureResourceQuerier<br/>BaseQuerier Implementation] 
-        OCI_Q[OCIResourceQuerier<br/>BaseQuerier Implementation]
+        AWS_Q[AWSResourceQuerier - BaseQuerier Implementation]
+        Azure_Q[AzureResourceQuerier - BaseQuerier Implementation] 
+        OCI_Q[OCIResourceQuerier - BaseQuerier Implementation]
     end
     
     subgraph "Provider SDKs"
-        Boto3[boto3<br/>AWS Python SDK]
-        AzureSDK[azure-*<br/>Azure Python SDKs]
-        OCISDK[oci<br/>Oracle Cloud SDK]
+        Boto3[boto3 - AWS Python SDK]
+        AzureSDK[azure-* - Azure Python SDKs]
+        OCISDK[oci - Oracle Cloud SDK]
     end
     
     subgraph "Cloud Services"
-        AWS_Services[AWS Services<br/>EC2, S3, Lambda, etc.]
-        Azure_Services[Azure Services<br/>VMs, Storage, Functions, etc.]
-        OCI_Services[OCI Services<br/>Compute, Object Storage, etc.]
+        AWS_Services[AWS Services - EC2, S3, Lambda, etc.]
+        Azure_Services[Azure Services - VMs, Storage, Functions, etc.]
+        OCI_Services[OCI Services - Compute, Object Storage, etc.]
     end
     
     UI --> AWS_Q
@@ -310,24 +310,24 @@ graph TB
     end
     
     subgraph "Container Registry"
-        DOCKER[Docker Images<br/>mcp-server-*]
+        DOCKER[Docker Images - mcp-server-*]
     end
     
     subgraph "Distribution"
-        PYPI[TestPyPI<br/>syntropaibox package]
-        GIT[Git Repositories<br/>Individual MCP Servers]
+        PYPI[TestPyPI - syntropaibox package]
+        GIT[Git Repositories - Individual MCP Servers]
     end
     
     subgraph "Runtime Environment"
-        CONTAINER[Docker Containers<br/>Isolated Execution]
-        CONFIG[Configuration Files<br/>claude_config.json]
-        CLIENT[MCP Clients<br/>Claude Desktop, IDEs]
+        CONTAINER[Docker Containers - Isolated Execution]
+        CONFIG[Configuration Files - claude_config.json]
+        CLIENT[MCP Clients - Claude Desktop, IDEs]
     end
     
     subgraph "Cloud Authentication"
-        AWS_CRED[AWS Credentials<br/>~/.aws/]
-        AZURE_CRED[Azure Credentials<br/>Environment Variables]
-        OCI_CRED[OCI Credentials<br/>~/.oci/config]
+        AWS_CRED[AWS Credentials - ~/.aws/]
+        AZURE_CRED[Azure Credentials - Environment Variables]
+        OCI_CRED[OCI Credentials - ~/.oci/config]
     end
     
     DEV --> TEST
