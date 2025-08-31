@@ -90,20 +90,20 @@ graph TB
 graph TB
     subgraph "SyntropAIBox Core Components"
         subgraph "Base Classes"
-            BQ["BaseQuerier\n- execute_query()\n- build_code_snippet_schema()\n- run_code_tool()"]
-            BS["BaseSession\n- from_args()\n- configure_parser()"]
+            BQ[BaseQuerier - execute_query, build_schema, run_code_tool]
+            BS[BaseSession - from_args, configure_parser]
         end
         
         subgraph "Security Layer"
-            CE["CodeExecutor\nAST Transformer\n- visit_Import()\n- visit_Call()"]
-            SB["create_safe_builtins()\nWhitelist Functions"]
-            TO["exec_with_timeout()\nTimeout Protection"]
+            CE[CodeExecutor - AST Transformer, visit_Import, visit_Call]
+            SB[create_safe_builtins - Whitelist Functions]
+            TO[exec_with_timeout - Timeout Protection]
         end
         
         subgraph "Execution Environment"
-            NS["Namespace Injection\nSDK Objects & Credentials"]
-            AM["Allowed Modules\nSecurity Whitelist"]
-            ER["Error Handling\nJSON Serialization"]
+            NS[Namespace Injection - SDK Objects & Credentials]
+            AM[Allowed Modules - Security Whitelist]
+            ER[Error Handling - JSON Serialization]
         end
     end
     
