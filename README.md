@@ -61,6 +61,133 @@ class CodeExecutor(ast.NodeTransformer):
 - **Features**: Stock, forex, and cryptocurrency analysis
 - **Use Case**: Demonstrates abstraction beyond cloud services
 
+## 🏗️ System Architecture
+
+### High-Level System Overview
+
+```mermaid
+graph TB
+    subgraph "External Systems"
+        AWS[AWS Services]
+        Azure[Azure Services] 
+        OCI[Oracle Cloud Services]
+        Finviz[Finviz Financial Data]
+    end
+    
+    subgraph "SyntropAI MCP Ecosystem"
+        Client[Claude Desktop / LLM Client]
+        MCPServers[MCP Servers]
+        SyntropAI[SyntropAIBox Core Library]
+    end
+    
+    Client -->|MCP Protocol| MCPServers
+    MCPServers -->|Uses| SyntropAI
+    MCPServers -->|SDK Calls| AWS
+    MCPServers -->|SDK Calls| Azure
+    MCPServers -->|SDK Calls| OCI
+    MCPServers -->|API Calls| Finviz
+    
+    style SyntropAI fill:#e1f5fe
+    style MCPServers fill:#f3e5f5
+    style Client fill:#e8f5e8
+```
+
+### Security Architecture Pipeline
+
+```mermaid
+graph TB
+    subgraph "User Input"
+        UI[Code Snippet from User]
+    end
+    
+    subgraph "Security Validation Pipeline"
+        AST[AST Parser - Python ast.parse]
+        VAL[Code Validator - visit_Call, visit_Import]
+        WL[Whitelist Check - Allowed Modules & Functions]
+        NS[Safe Namespace - Controlled Builtins]
+        TO[Timeout Protection - SIGALRM Handler]
+    end
+    
+    subgraph "Execution Environment"
+        EXEC[exec in Sandbox]
+        RESULT[Extract result Variable]
+    end
+    
+    subgraph "Output Processing"
+        SER[JSON Serialization]
+        ERR[Error Handling]
+    end
+    
+    UI --> AST
+    AST --> VAL
+    VAL -->|Valid| WL
+    VAL -->|Invalid| ERR
+    WL -->|Approved| NS
+    WL -->|Blocked| ERR
+    NS --> TO
+    TO --> EXEC
+    EXEC --> RESULT
+    RESULT --> SER
+    SER --> ERR
+    
+    style VAL fill:#ffebee
+    style WL fill:#fff3e0
+    style TO fill:#f3e5f5
+    style ERR fill:#fce4ec
+```
+
+### Multi-Cloud Abstraction Pattern
+
+```mermaid
+graph TB
+    subgraph "Unified Interface Layer"
+        UI[User Interface - Single API Pattern]
+    end
+    
+    subgraph "Provider Abstraction"
+        AWS_S[AWSSession - boto3.Session]
+        Azure_S[AzureSession - DefaultAzureCredential]
+        OCI_S[OCISession - oci.config]
+        
+        AWS_Q[AWSResourceQuerier - BaseQuerier Implementation]
+        Azure_Q[AzureResourceQuerier - BaseQuerier Implementation] 
+        OCI_Q[OCIResourceQuerier - BaseQuerier Implementation]
+    end
+    
+    subgraph "Provider SDKs"
+        Boto3[boto3 - AWS Python SDK]
+        AzureSDK[azure-* - Azure Python SDKs]
+        OCISDK[oci - Oracle Cloud SDK]
+    end
+    
+    subgraph "Cloud Services"
+        AWS_Services[AWS Services - EC2, S3, Lambda, etc.]
+        Azure_Services[Azure Services - VMs, Storage, Functions, etc.]
+        OCI_Services[OCI Services - Compute, Object Storage, etc.]
+    end
+    
+    UI --> AWS_Q
+    UI --> Azure_Q  
+    UI --> OCI_Q
+    
+    AWS_Q --> AWS_S
+    Azure_Q --> Azure_S
+    OCI_Q --> OCI_S
+    
+    AWS_S --> Boto3
+    Azure_S --> AzureSDK
+    OCI_S --> OCISDK
+    
+    Boto3 --> AWS_Services
+    AzureSDK --> Azure_Services
+    OCISDK --> OCI_Services
+    
+    style UI fill:#e8f5e8
+    style AWS_Q fill:#fff3e0
+    style Azure_Q fill:#e3f2fd
+    style OCI_Q fill:#f3e5f5
+```
+
 ## 🎯 Technical Excellence
 
 ### 1. Abstract Base Classes
