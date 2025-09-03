@@ -293,9 +293,9 @@ For detailed system architecture, component relationships, and data flow diagram
 
 ## 📞 Contact
 
-**Hari Bantwal**  
-Email: hpai.bantwal@gmail.com  
-GitHub: [paihari](https://github.com/paihari)
+For more information about SyntropAI and enterprise solutions:  
+**Website**: [about.simplificare.ch](https://about.simplificare.ch)  
+**GitHub**: [simplificare-org](https://github.com/simplificare-org)
 
 ---
 
