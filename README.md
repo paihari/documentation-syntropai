@@ -121,50 +121,6 @@ sequenceDiagram
     LLM->>User: Natural Language Summary
 ```
 
-### Security Architecture Pipeline
-
-```mermaid
-graph TB
-    subgraph "LLM Generated Input"
-        CODE[Code Snippet from LLM<br/>Based on User Request]
-    end
-    
-    subgraph "Security Validation Pipeline"
-        AST[AST Parser - Python ast.parse]
-        VAL[Code Validator - visit_Call, visit_Import]
-        WL[Whitelist Check - Allowed Modules & Functions]
-        NS[Safe Namespace - Controlled Builtins]
-        TO[Timeout Protection - SIGALRM Handler]
-    end
-    
-    subgraph "Execution Environment"
-        EXEC[exec in Sandbox]
-        RESULT[Extract result Variable]
-    end
-    
-    subgraph "Output Processing"
-        SER[JSON Serialization]
-        ERR[Error Handling]
-    end
-    
-    CODE --> AST
-    AST --> VAL
-    VAL -->|Valid| WL
-    VAL -->|Invalid| ERR
-    WL -->|Approved| NS
-    WL -->|Blocked| ERR
-    NS --> TO
-    TO --> EXEC
-    EXEC --> RESULT
-    RESULT --> SER
-    SER --> ERR
-    
-    style CODE fill:#e8f5e8
-    style VAL fill:#ffebee
-    style WL fill:#fff3e0
-    style TO fill:#f3e5f5
-    style ERR fill:#fce4ec
-```
 
 ### Multi-Cloud Abstraction Pattern
 
