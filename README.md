@@ -21,7 +21,7 @@ graph TB
         S2 --> S3[MCP Server]
         
         subgraph "Natural Language Operations"
-            NL[User: Deploy web app]
+            NL[User: Deploy app]
             AI[LLM Agent]
             EXEC[Real-time Execution]
             RES[Live Results]
