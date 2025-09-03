@@ -38,15 +38,6 @@ The core abstraction library that powers all MCP servers:
 - **Secure Sandbox**: Safe code execution with whitelisted modules and timeout protection
 - **Dynamic Schema Generation**: Runtime schema creation for different SDKs
 
-#### Technical Highlights:
-```python
-# Safe code execution with AST validation
-class CodeExecutor(ast.NodeTransformer):
-    def visit_Call(self, node):
-        if isinstance(node.func, ast.Name) and node.func.id in {"eval", "exec", "compile"}:
-            raise ValueError(f"Usage of '{node.func.id}' is not allowed.")
-        return self.generic_visit(node)
-```
 
 ### 2. SDK-to-MCP Server Demonstrations
 
