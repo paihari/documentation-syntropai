@@ -96,26 +96,26 @@ graph TB
 
 ```mermaid
 sequenceDiagram
-    participant User as User
+    actor User as User
     participant LLM as Claude LLM
     participant MCP as MCP Server
-    participant Box as SyntropAIBox
+    participant SBOX as SyntropAIBox
     participant SDK as Cloud SDK
     participant Cloud as Cloud Service
-    
-    User->>LLM: Natural Language Request<br/>"List my EC2 instances"
-    LLM->>MCP: MCP Tool Call<br/>code_snippet: "result = session.client('ec2').describe_instances()"
-    MCP->>Box: execute_query(code_snippet)
-    
-    Box->>Box: AST Parse & Validate
-    Box->>Box: Security Whitelist Check
-    Box->>Box: Create Safe Namespace
-    Box->>SDK: Execute Code in Sandbox
+
+    User->>LLM: Natural Language Request\n"List my EC2 instances"
+    LLM->>MCP: MCP Tool Call\ncode_snippet: "result = session.client('ec2').describe_instances()"
+    MCP->>SBOX: execute_query(code_snippet)
+
+    SBOX->>SBOX: AST Parse & Validate
+    SBOX->>SBOX: Security Whitelist Check
+    SBOX->>SBOX: Create Safe Namespace
+    SBOX->>SDK: Execute Code in Sandbox
     SDK->>Cloud: API Call
     Cloud->>SDK: Response Data
-    SDK->>Box: Processed Result
-    
-    Box->>MCP: JSON Serialized Response
+    SDK->>SBOX: Processed Result
+
+    SBOX->>MCP: JSON Serialized Response
     MCP->>LLM: Tool Response
     LLM->>User: Natural Language Summary
 ```
