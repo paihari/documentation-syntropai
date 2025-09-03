@@ -273,16 +273,6 @@ docker run -i --rm -e AWS_PROFILE=default mcp-server-aws-resources
 }
 ```
 
-## 🎖️ Resume Highlights
-
-This project demonstrates:
-- **Universal Framework Design**: Created a platform that transforms any SDK into AI-agent-ready MCP servers
-- **AI Agent Infrastructure**: Built the foundation for autonomous AI operations across any platform or service
-- **Security Engineering**: AST-based validation ensures safe AI agent operations in production environments
-- **Enterprise Automation**: Enabled AI agents to perform DevOps, SecOps, and FinOps operations autonomously
-- **Multi-Domain Expertise**: Proved framework versatility across cloud, financial, and security domains
-- **Production-Scale Architecture**: Docker containerization, security sandboxing, and enterprise deployment patterns
-- **Open Source Innovation**: Published reusable framework enabling community to build AI-powered operational tools
 
 ## 📊 Architecture Diagrams
 
