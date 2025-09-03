@@ -92,12 +92,40 @@ graph TB
     style Client fill:#e8f5e8
 ```
 
+### MCP Protocol Flow
+
+```mermaid
+sequenceDiagram
+    participant User as User
+    participant LLM as Claude LLM
+    participant MCP as MCP Server
+    participant Box as SyntropAIBox
+    participant SDK as Cloud SDK
+    participant Cloud as Cloud Service
+    
+    User->>LLM: Natural Language Request<br/>"List my EC2 instances"
+    LLM->>MCP: MCP Tool Call<br/>code_snippet: "result = session.client('ec2').describe_instances()"
+    MCP->>Box: execute_query(code_snippet)
+    
+    Box->>Box: AST Parse & Validate
+    Box->>Box: Security Whitelist Check
+    Box->>Box: Create Safe Namespace
+    Box->>SDK: Execute Code in Sandbox
+    SDK->>Cloud: API Call
+    Cloud->>SDK: Response Data
+    SDK->>Box: Processed Result
+    
+    Box->>MCP: JSON Serialized Response
+    MCP->>LLM: Tool Response
+    LLM->>User: Natural Language Summary
+```
+
 ### Security Architecture Pipeline
 
 ```mermaid
 graph TB
-    subgraph "User Input"
-        UI[Code Snippet from User]
+    subgraph "LLM Generated Input"
+        CODE[Code Snippet from LLM<br/>Based on User Request]
     end
     
     subgraph "Security Validation Pipeline"
@@ -118,7 +146,7 @@ graph TB
         ERR[Error Handling]
     end
     
-    UI --> AST
+    CODE --> AST
     AST --> VAL
     VAL -->|Valid| WL
     VAL -->|Invalid| ERR
@@ -130,6 +158,7 @@ graph TB
     RESULT --> SER
     SER --> ERR
     
+    style CODE fill:#e8f5e8
     style VAL fill:#ffebee
     style WL fill:#fff3e0
     style TO fill:#f3e5f5
